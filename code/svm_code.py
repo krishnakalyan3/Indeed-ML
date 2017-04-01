@@ -18,8 +18,8 @@ from imblearn.under_sampling import RandomUnderSampler
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RandomizedSearchCV
 
-TRAIN = '/Users/krishna/MOOC/IndeedML/dataset/train.tsv'
-TEST = '/Users/krishna/MOOC/IndeedML/dataset/test.tsv'
+TRAIN = '../dataset/train.tsv'
+TEST = '../dataset/test.tsv'
 
 
 data_arry = ['part-time-job',
