@@ -80,9 +80,8 @@ def subset_data(X, y):
 if __name__ == '__main__':
     data = pd.read_csv(TRAIN, sep='\t')
     test = pd.read_csv(TEST, sep='\t')
-    data = data.dropna()
-
     vect = vec_data(data, test)
+    data = data.dropna()
     train_X = vect.transform(data['description']).todense()
     test_X = vect.transform(test['description']).todense()
     train_y = train_pre1(data)
@@ -95,8 +94,8 @@ if __name__ == '__main__':
         model = svc_model(tr_X, tr_y)
         y_hat_tr = model.predict(tr_X)
         y_hat_val = model.predict(val_X)
-        eval_train = eval_models(y, y_hat_tr)
-        eval_val = eval_models(y, y_hat_val)
+        eval_train = eval_models(tr_y, y_hat_tr)
+        eval_val = eval_models(val_y, y_hat_val)
         print("Train Eval ", eval_train)
         print("Validation Eval ", eval_val)
         y_hats[:, k] = model.predict(test_X)
