@@ -2,6 +2,7 @@
 import os
 import numpy as np
 import pandas as pd
+import time
 from utils import fix_tags, eval_models, save_np
 import numpy as np
 import codecs
@@ -63,9 +64,10 @@ def vec_data(train, test):
 def svc_model(X, y):
     svc = SVC(kernel='rbf', cache_size=5000, verbose=False)
     params = {}
-    params['C'] = np.logspace(-5, 4.5, 15)
-    clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0)
+    params['C'] = np.logspace(-5, 4.5, 20)
+    clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0, cv=5)
     model = clf.fit(X, y)
+    print(model)
     return model.best_estimator_
 
 def subset_data(X, y):
@@ -78,6 +80,7 @@ def subset_data(X, y):
     return X_train, X_test, y_train, y_test
 
 if __name__ == '__main__':
+    start_time = time.time()
     data = pd.read_csv(TRAIN, sep='\t')
     test = pd.read_csv(TEST, sep='\t')
     vect = vec_data(data, test)
@@ -102,3 +105,5 @@ if __name__ == '__main__':
 
     print(y_hats.shape)
     save_np('../save_data/save_array.bc', y_hats)
+    total_time = time.time() - start_time
+    print("Time Taken ", str(total_time / 60))
