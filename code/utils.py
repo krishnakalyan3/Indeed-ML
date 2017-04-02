@@ -46,7 +46,7 @@ def fix_tags(data):
 
 def eval_models(y_true, y_pred):
     acc = accuracy_score(y_true, y_pred)
-    f1 = f1_score(y_true, y_pred, average=None)
+    f1 = f1_score(y_true, y_pred, average='binary')
     return (acc, f1)
 
 def save_np(file_name, arr):

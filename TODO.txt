@@ -1,0 +1,9 @@
+# Current Rank 64
+	# Add None
+	# Change C parametes
+	# Add word to vec as input parameter
+
+# None Dosent Work
+	
+
+Some Statistics

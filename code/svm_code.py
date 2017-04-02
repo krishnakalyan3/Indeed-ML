@@ -62,13 +62,12 @@ def vec_data(train, test):
 
 
 def svc_model(X, y):
-    svc = SVC(kernel='rbf', cache_size=5000, verbose=False)
-    params = {}
-    params['C'] = np.logspace(-5, 4.5, 20)
-    clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0, cv=5)
-    model = clf.fit(X, y)
-    print(model)
-    return model.best_estimator_
+    svc = SVC(kernel='rbf', cache_size=5000, verbose=False, C=1.0)
+    #params = {}
+    #params['C'] = np.logspace(-5, 4.5, 10)
+    #clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0, cv=5)
+    model = svc.fit(X, y)
+    return model
 
 def subset_data(X, y):
     rus = RandomUnderSampler(random_state=1337)
