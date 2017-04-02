@@ -63,10 +63,10 @@ def vec_data(train, test):
 
 def svc_model(X, y):
     svc = SVC(kernel='rbf', cache_size=5000, verbose=False, C=1.0)
-    #params = {}
-    #params['C'] = np.logspace(-5, 4.5, 10)
-    #clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0, cv=5)
-    model = svc.fit(X, y)
+    params = {}
+    params['C'] = np.logspace(-6, 2, 10)
+    clf = RandomizedSearchCV(svc, param_distributions=params, n_iter=10, n_jobs=-1, verbose=0, cv=5)
+    model = clf.fit(X, y)
     return model
 
 def subset_data(X, y):
@@ -75,7 +75,7 @@ def subset_data(X, y):
     X_train, X_test, y_train, y_test = train_test_split(X_res, y_res,
                                                         test_size=0.2, stratify=y_res,
                                                         random_state=1337)
-
+    print(X_train.shape[0])
     return X_train, X_test, y_train, y_test
 
 if __name__ == '__main__':

@@ -7,3 +7,9 @@
 	
 
 Some Statistics
+
+
+
+Scores 
+
+0.365441 | 64

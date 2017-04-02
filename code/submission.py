@@ -23,9 +23,10 @@ if __name__ == '__main__':
         for k2, v2 in enumerate(v1):
             if v2 == 1:
                 each_row.append(data_arry[k2])
+
         labels.append(each_row)
 
-    res_file = open("submissions/submit.tsv", 'w')
+    res_file = open("../submissions/submit.tsv", 'w')
 
     for r in labels:
         res_file.write(' '.join(r) + "\n")
